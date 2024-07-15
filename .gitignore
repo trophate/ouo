@@ -1,0 +1,8 @@
+### IntelliJ IDEA ###
+**.idea
+
+### project ###
+**/target
+**/*.iml
+**/*.yml
+!**/*-template.yml

@@ -1,0 +1,10 @@
+server:
+  port:
+spring:
+  application:
+    name: auth
+  profiles:
+    include: framework
+logging:
+  file:
+    name: ./logs/auth.log
