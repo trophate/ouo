@@ -7,4 +7,4 @@ spring:
     include: framework
 logging:
   file:
-    name: ./logs/auth.log
+    name: /.../auth.log

@@ -16,3 +16,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://0.0.0.0:0000/eureka
+logging:
+  file:
+    name: /../gateway.log
+

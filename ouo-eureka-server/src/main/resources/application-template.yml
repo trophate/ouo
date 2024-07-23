@@ -8,3 +8,6 @@ eureka:
     serviceUrl:
       defaultZone: http://0.0.0.0:0000/eureka
     register-with-eureka: false
+logging:
+  file:
+    name: /.../eureka-server.log
