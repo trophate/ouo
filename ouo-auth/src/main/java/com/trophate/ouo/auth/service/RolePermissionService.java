@@ -16,30 +16,14 @@ public class RolePermissionService {
         this.rolePermissionRepository = rolePermissionRepository;
     }
 
-    /**
-     * 批量保存
-     *
-     * @param rolePermissions 角色权限对象集合
-     */
     public void saveAll(List<RolePermission> rolePermissions) {
         rolePermissionRepository.saveAll(rolePermissions);
     }
 
-    /**
-     * 通过角色id删除
-     *
-     * @param roleId 角色id
-     */
     public void deleteByRoleId(int roleId) {
         rolePermissionRepository.deleteByRoleId(roleId);
     }
 
-    /**
-     * 通过角色id集合获取权限id集合
-     *
-     * @param roleIds 角色id集合
-     * @return List<Integer>
-     */
     public List<Integer> getPermissionIdsByRoleIds(List<Integer> roleIds) {
         List<RolePermission> rolePermissions = rolePermissionRepository.findByRoleIdIn(roleIds);
         var permissionIds = new ArrayList<Integer>();

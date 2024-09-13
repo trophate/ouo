@@ -2,9 +2,6 @@ package com.trophate.ouo.framework.exception;
 
 public class ResException extends BaseException {
 
-    /**
-     * 异常码
-     */
     private int code = -1;
 
     public ResException() {

@@ -18,8 +18,6 @@ public class UserRoleService {
 
     /**
      * 批量保存
-     *
-     * @param userRoles 用户角色对象集合
      */
     public void saveAll(List<UserRole> userRoles) {
         userRoleRepository.saveAll(userRoles);
@@ -27,8 +25,6 @@ public class UserRoleService {
 
     /**
      * 通过用户id删除
-     *
-     * @param userId 用户id
      */
     public void deleteByUserId(int userId) {
         userRoleRepository.deleteByUserId(userId);
@@ -36,9 +32,6 @@ public class UserRoleService {
 
     /**
      * 通过角色id获取角色id集合
-     *
-     * @param userId 用户id
-     * @return List<Integer>
      */
     public List<Integer> getRoleIdsByUserId(int userId) {
         List<UserRole> userRoles = userRoleRepository.findByUserId(userId);

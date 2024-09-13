@@ -4,17 +4,8 @@ import com.trophate.ouo.framework.exception.ResException;
 
 public class Result {
 
-    /**
-     * 响应码
-     */
     private int code;
-    /**
-     * 消息
-     */
     private String message;
-    /**
-     * 数据
-     */
     private Object data;
 
     public int getCode() {

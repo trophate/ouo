@@ -5,7 +5,7 @@ public class SecurityConstant {
     /**
      * 认证cookie名
      */
-    public static final String SECRID_COOKIE_NAME = "SECRID";
+    public static final String AUTH_COOKIE_NAME = "SECRID";
     /**
      * 上下文缓存存活时间（min）
      */

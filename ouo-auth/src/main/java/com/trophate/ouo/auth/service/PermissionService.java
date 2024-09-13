@@ -19,8 +19,6 @@ public class PermissionService {
 
     /**
      * 创建
-     *
-     * @param dto 参数
      */
     public void create(PermissionCreateDTO dto) {
         var permission = new Permission();
@@ -33,9 +31,6 @@ public class PermissionService {
 
     /**
      * 通过id集合获取编码表
-     *
-     * @param ids id集合
-     * @return List<String>
      */
     public List<String> getCodesByIds(List<Integer> ids) {
         List<Permission> permissions = permissionRepository.findByIdIn(ids);
@@ -48,8 +43,6 @@ public class PermissionService {
 
     /**
      * 获取所有编码
-     *
-     * @return List<String>
      */
     public List<String> getAllCodes() {
         List<Permission> permissions = permissionRepository.findAll();
@@ -62,9 +55,6 @@ public class PermissionService {
 
     /**
      * 编辑
-     *
-     * @param id id
-     * @param dto 参数
      */
     public void edit(int id, PermissionCreateDTO dto) {
         Permission permission = permissionRepository.getById(id);
@@ -82,8 +72,6 @@ public class PermissionService {
 
     /**
      * 删除
-     *
-     * @param id id
      */
     public void del(int id) {
         permissionRepository.deleteById(id);
@@ -91,8 +79,6 @@ public class PermissionService {
 
     /**
      * 保存
-     *
-     * @param permission 权限对象
      */
     public void save(Permission permission) {
         permissionRepository.save(permission);
@@ -100,8 +86,6 @@ public class PermissionService {
 
     /**
      * 批量保存
-     *
-     * @param permissions 权限对象集合
      */
     public void saveAll(List<Permission> permissions) {
         permissionRepository.saveAll(permissions);

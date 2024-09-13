@@ -7,8 +7,6 @@ public class SecurityUtils {
 
     /**
      * 获取当前用户
-     *
-     * @return CurrentUser
      */
     public static CurrentUser getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

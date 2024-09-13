@@ -10,8 +10,6 @@ public interface CustomRepository<T, ID> extends JpaRepository<T, ID> {
 
     /**
      * 逻辑删除
-     *
-     * @param id id
      */
     @Modifying
     @Transactional

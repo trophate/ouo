@@ -50,12 +50,9 @@ public class CustomSecurityContextRepository extends HttpSessionSecurityContextR
 
     /**
      * 获取上下文
-     *
-     * @param request 请求
-     * @return SecurityContext
      */
     private SecurityContext getContext(HttpServletRequest request) {
-        String secrid = HttpUtils.getCookieVal(request, SecurityConstant.SECRID_COOKIE_NAME);
+        String secrid = HttpUtils.getCookieVal(request, SecurityConstant.AUTH_COOKIE_NAME);
         SecurityContext context = null;
         if (secrid != null) {
             context = redisTemplate.<String, SecurityContext>opsForHash().get(CONTEXT_CACHE_KEY, secrid);

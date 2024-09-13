@@ -11,9 +11,6 @@ import java.time.LocalDateTime;
 @Component
 public class CustomEntityListener {
 
-    /**
-     * 系统用户id
-     */
     private final int SYS_USER_ID = 0;
 
     @PrePersist

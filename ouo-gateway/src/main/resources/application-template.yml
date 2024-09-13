@@ -19,4 +19,3 @@ eureka:
 logging:
   file:
     name: /../gateway.log
-

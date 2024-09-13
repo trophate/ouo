@@ -22,8 +22,6 @@ public class RoleService {
 
     /**
      * 创建
-     *
-     * @param dto 参数
      */
     public void create(RoleCreateDTO dto) {
         var role = new Role();
@@ -33,9 +31,6 @@ public class RoleService {
 
     /**
      * 添加权限
-     *
-     * @param id id
-     * @param dto 参数
      */
     public void addPermission(int id, AddPermissionDTO dto) {
         rolePermissionService.deleteByRoleId(id);

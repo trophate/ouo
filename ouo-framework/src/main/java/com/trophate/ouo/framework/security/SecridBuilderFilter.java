@@ -23,13 +23,13 @@ public class SecridBuilderFilter extends GenericFilterBean {
     }
 
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        Cookie secridCookie = HttpUtils.getCookie(request, SecurityConstant.SECRID_COOKIE_NAME);
+        Cookie secridCookie = HttpUtils.getCookie(request, SecurityConstant.AUTH_COOKIE_NAME);
         if (secridCookie == null) {
             secrid = RandomStringUtils.randomAlphabetic(10) + System.currentTimeMillis();
         } else {
             secrid = secridCookie.getValue();
         }
-        secridCookie = new Cookie(SecurityConstant.SECRID_COOKIE_NAME, secrid);
+        secridCookie = new Cookie(SecurityConstant.AUTH_COOKIE_NAME, secrid);
         response.addCookie(secridCookie);
         chain.doFilter(request, response);
     }

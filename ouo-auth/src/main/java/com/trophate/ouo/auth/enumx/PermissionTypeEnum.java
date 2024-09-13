@@ -2,13 +2,7 @@ package com.trophate.ouo.auth.enumx;
 
 public enum PermissionTypeEnum {
 
-    /**
-     * 菜单
-     */
     ORDER(1, "菜单"),
-    /**
-     * 按钮
-     */
     BUTTON(2, "按钮");
 
     private final int code;

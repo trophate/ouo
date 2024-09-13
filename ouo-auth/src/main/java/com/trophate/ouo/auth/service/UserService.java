@@ -25,29 +25,16 @@ public class UserService {
         this.userRoleService = userRoleService;
     }
 
-    /**
-     * 通过用户名获取
-     *
-     * @param username 用户名
-     * @return User
-     */
     public User getByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
 
-    /**
-     * 保存
-     *
-     * @param user 用户对象
-     */
     public void save(User user) {
         userRepository.save(user);
     }
 
     /**
      * 注册
-     *
-     * @param dto 参数
      */
     public void register(UserRegisterDTO dto) {
         if (userRepository.findUserByUsername(dto.getUsername()) != null) {
@@ -64,8 +51,6 @@ public class UserService {
 
     /**
      * 注销
-     *
-     * @param id id
      */
     public void cancel(int id) {
         userRepository.deleteByIdInLogical(id);
@@ -73,9 +58,6 @@ public class UserService {
 
     /**
      * 编辑基础信息
-     *
-     * @param id id
-     * @param dto 参数
      */
     public void editBaseInfo(int id, InfoOfUserEditDTO dto) {
         User user = userRepository.findById(id);
@@ -86,9 +68,6 @@ public class UserService {
 
     /**
      * 添加角色
-     *
-     * @param id id
-     * @param dto 参数
      */
     public void addRole(int id, AddRoleDTO dto) {
         userRoleService.deleteByUserId(id);

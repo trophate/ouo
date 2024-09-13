@@ -7,10 +7,6 @@ public class HttpUtils {
 
     /**
      * 获取cookie
-     *
-     * @param request 请求
-     * @param name cookie名
-     * @return Cookie
      */
     public static Cookie getCookie(HttpServletRequest request, String name) {
         if (request.getCookies() != null) {
@@ -25,10 +21,6 @@ public class HttpUtils {
 
     /**
      * 获取cookie值
-     *
-     * @param request 请求
-     * @param name cookie名
-     * @return Cookie
      */
     public static String getCookieVal(HttpServletRequest request, String name) {
         if (request.getCookies() != null) {
