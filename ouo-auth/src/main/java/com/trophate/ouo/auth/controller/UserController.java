@@ -19,7 +19,10 @@ public class UserController {
     }
 
     /**
-     * 注册
+     * 注册。
+     *
+     * @param dto 参数
+     * @return Result
      */
     @PostMapping("/register")
     @PreAuthorize("hasAuthority('user:register')")
@@ -29,7 +32,10 @@ public class UserController {
     }
 
     /**
-     * 注销
+     * 注销。
+     *
+     * @param id id
+     * @return Result
      */
     @DeleteMapping("/{id}/cancel")
     @PreAuthorize("hasAuthority('user:cancel')")
@@ -40,6 +46,10 @@ public class UserController {
 
     /**
      * 编辑信息
+     *
+     * @param id id
+     * @param dto 参数
+     * @return Result
      */
     @PutMapping("/{id}/base-info")
     @PreAuthorize("hasAuthority('user:info:edit')")
@@ -50,6 +60,10 @@ public class UserController {
 
     /**
      * 添加角色
+     *
+     * @param id id
+     * @param dto 参数
+     * @return Result
      */
     @PutMapping("/{id}/add-role")
     @PreAuthorize("hasAuthority('user:addRole')")

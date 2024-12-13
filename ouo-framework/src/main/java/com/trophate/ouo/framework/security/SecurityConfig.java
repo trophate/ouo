@@ -1,7 +1,7 @@
 package com.trophate.ouo.framework.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trophate.ouo.framework.security.exception.NoLoginException;
+import com.trophate.ouo.framework.security.exceptions.NotLoginException;
 import com.trophate.ouo.framework.result.Result;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -41,7 +41,7 @@ public class SecurityConfig {
                         response.setContentType("application/json");
                         response.setCharacterEncoding("UTF-8");
                         PrintWriter out = response.getWriter();
-                        Result res = Result.fail(new NoLoginException());
+                        Result res = Result.fail(new NotLoginException());
                         out.print(objectMapper.writeValueAsString(res));
                         out.flush();
                         out.close();

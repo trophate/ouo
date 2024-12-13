@@ -1,6 +1,6 @@
 package com.trophate.ouo.framework.security;
 
-import com.trophate.ouo.framework.common.utils.HttpUtils;
+import com.trophate.ouo.framework.commons.utils.HttpUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 

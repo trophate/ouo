@@ -1,15 +1,15 @@
 spring:
   datasource:
-    url: jdbc:mysql://
-    username:
-    password:
+    url: jdbc:mysql://0.0.0.0:3306/ouo
+    username: root
+    password: 0
   jpa:
     show-sql: true
   redis:
-    host:
-    password:
+    host: 0.0.0.0
+    password: 0
     client-type: lettuce
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://0.0.0.0:0000/eureka
+      defaultZone: http://0.0.0.0:0/eureka

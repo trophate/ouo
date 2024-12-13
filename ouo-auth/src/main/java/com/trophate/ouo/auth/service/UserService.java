@@ -6,7 +6,7 @@ import com.trophate.ouo.auth.dto.InfoOfUserEditDTO;
 import com.trophate.ouo.auth.dto.UserRegisterDTO;
 import com.trophate.ouo.auth.entity.User;
 import com.trophate.ouo.auth.entity.UserRole;
-import com.trophate.ouo.auth.enumx.SexEnum;
+import com.trophate.ouo.auth.enums.SexEnum;
 import com.trophate.ouo.auth.exception.UsernameExistException;
 import com.trophate.ouo.auth.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,7 +34,9 @@ public class UserService {
     }
 
     /**
-     * 注册
+     * 注册。
+     *
+     * @param dto 参数
      */
     public void register(UserRegisterDTO dto) {
         if (userRepository.findUserByUsername(dto.getUsername()) != null) {
@@ -42,7 +44,7 @@ public class UserService {
         }
         var user = new User();
         user.setUsername(dto.getUsername());
-        var encoder = new BCryptPasswordEncoder(AuthConstant.BCRYPT_LEN);
+        var encoder = new BCryptPasswordEncoder(AuthConstant.BCRYPT_DEFAULT_LEN);
         String encryptedPassword = "{bcrypt}" + encoder.encode(dto.getPassword());
         user.setPassword(encryptedPassword);
         user.setSex(SexEnum.MAN.getCode());
@@ -50,7 +52,9 @@ public class UserService {
     }
 
     /**
-     * 注销
+     * 注销。
+     *
+     * @param id id
      */
     public void cancel(int id) {
         userRepository.deleteByIdInLogical(id);
@@ -58,6 +62,9 @@ public class UserService {
 
     /**
      * 编辑基础信息
+     *
+     * @param id id
+     * @param dto 参数
      */
     public void editBaseInfo(int id, InfoOfUserEditDTO dto) {
         User user = userRepository.findById(id);
@@ -68,6 +75,9 @@ public class UserService {
 
     /**
      * 添加角色
+     *
+     * @param id id
+     * @param dto 参数
      */
     public void addRole(int id, AddRoleDTO dto) {
         userRoleService.deleteByUserId(id);
@@ -78,6 +88,6 @@ public class UserService {
             userRole.setRoleId(roleId);
             userRoles.add(userRole);
         }
-        userRoleService.saveAll(userRoles);
+        userRoleService.saveInBatch(userRoles);
     }
 }

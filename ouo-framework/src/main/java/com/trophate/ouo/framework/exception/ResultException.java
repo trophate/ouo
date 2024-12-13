@@ -1,23 +1,24 @@
 package com.trophate.ouo.framework.exception;
 
-public class ResException extends BaseException {
+public class ResultException extends BaseException {
 
+    /**
+     * 异常码
+     */
     private int code = -1;
 
-    public ResException() {
+    public ResultException() {}
 
-    }
-
-    public ResException(String message) {
+    public ResultException(String message) {
         super(message);
     }
 
-    public ResException(String message, int code) {
+    public ResultException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public ResException(ExceptionEnum exceptionEnum) {
+    public ResultException(ExceptionEnum exceptionEnum) {
         super(exceptionEnum.getMessage());
         this.code = exceptionEnum.getCode();
     }

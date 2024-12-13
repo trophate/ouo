@@ -17,21 +17,28 @@ public class UserRoleService {
     }
 
     /**
-     * 批量保存
+     * 批量保存。
+     *
+     * @param userRoles 参数集合
      */
-    public void saveAll(List<UserRole> userRoles) {
+    public void saveInBatch(List<UserRole> userRoles) {
         userRoleRepository.saveAll(userRoles);
     }
 
     /**
-     * 通过用户id删除
+     * 通过用户id删除。
+     *
+     * @param userId 用户id
      */
     public void deleteByUserId(int userId) {
         userRoleRepository.deleteByUserId(userId);
     }
 
     /**
-     * 通过角色id获取角色id集合
+     * 通过用户id获取角色id集合。
+     *
+     * @param userId 用户id
+     * @return List<Integer>
      */
     public List<Integer> getRoleIdsByUserId(int userId) {
         List<UserRole> userRoles = userRoleRepository.findByUserId(userId);

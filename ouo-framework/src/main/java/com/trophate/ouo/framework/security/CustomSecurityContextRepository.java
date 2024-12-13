@@ -1,6 +1,6 @@
 package com.trophate.ouo.framework.security;
 
-import com.trophate.ouo.framework.common.utils.HttpUtils;
+import com.trophate.ouo.framework.commons.utils.HttpUtils;
 import org.springframework.core.log.LogMessage;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.context.SecurityContext;

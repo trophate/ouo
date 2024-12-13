@@ -3,7 +3,7 @@ package com.trophate.ouo.framework.security;
 public class SecurityConstant {
 
     /**
-     * 认证cookie名
+     * 认证cookie名称
      */
     public static final String AUTH_COOKIE_NAME = "SECRID";
     /**

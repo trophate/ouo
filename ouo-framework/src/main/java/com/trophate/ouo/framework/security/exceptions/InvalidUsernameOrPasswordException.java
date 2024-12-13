@@ -1,12 +1,12 @@
-package com.trophate.ouo.framework.security.exception;
+package com.trophate.ouo.framework.security.exceptions;
 
 import com.trophate.ouo.framework.exception.ExceptionEnum;
-import com.trophate.ouo.framework.exception.ResException;
+import com.trophate.ouo.framework.exception.ResultException;
 
 /**
  * 无效的账号密码
  */
-public class InvalidUsernameOrPasswordException extends ResException {
+public class InvalidUsernameOrPasswordException extends ResultException {
 
     public InvalidUsernameOrPasswordException() {
         super(ExceptionEnum.INVALID_USERNAME_OR_PASSWORD);

@@ -18,7 +18,10 @@ public class PermissionController {
     }
 
     /**
-     * 创建
+     * 创建。
+     *
+     * @param dto 参数
+     * @return Result
      */
     @PostMapping
     @PreAuthorize("hasAuthority('permission:create')")
@@ -28,7 +31,11 @@ public class PermissionController {
     }
 
     /**
-     * 编辑
+     * 编辑。
+     *
+     * @param id id
+     * @param dto 参数
+     * @return Result
      */
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('permission:edit')")
@@ -38,7 +45,10 @@ public class PermissionController {
     }
 
     /**
-     * 删除
+     * 删除。
+     *
+     * @param id id
+     * @return Result
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('permission:del')")

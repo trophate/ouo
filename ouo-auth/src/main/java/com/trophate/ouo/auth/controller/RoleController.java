@@ -18,7 +18,10 @@ public class RoleController {
     }
 
     /**
-     * 创建
+     * 创建。
+     *
+     * @param dto 参数
+     * @return Result
      */
     @PostMapping
     @PreAuthorize("hasAuthority('role:create')")
@@ -28,7 +31,11 @@ public class RoleController {
     }
 
     /**
-     * 添加权限
+     * 添加权限。
+     *
+     * @param id id
+     * @param dto 参数
+     * @return Result
      */
     @PutMapping("/{id}/add-permission")
     @PreAuthorize("hasAuthority('role:addPermission')")

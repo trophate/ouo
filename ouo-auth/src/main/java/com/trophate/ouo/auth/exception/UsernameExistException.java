@@ -1,12 +1,9 @@
 package com.trophate.ouo.auth.exception;
 
 import com.trophate.ouo.framework.exception.ExceptionEnum;
-import com.trophate.ouo.framework.exception.ResException;
+import com.trophate.ouo.framework.exception.ResultException;
 
-/**
- * 用户名已经存在
- */
-public class UsernameExistException extends ResException {
+public class UsernameExistException extends ResultException {
 
     public UsernameExistException() {
         super(ExceptionEnum.USERNAME_EXIST);

@@ -1,14 +1,20 @@
-package com.trophate.ouo.auth.enumx;
+package com.trophate.ouo.auth.enums;
 
-public enum PermissionTypeEnum {
+public enum SexEnum {
 
-    ORDER(1, "菜单"),
-    BUTTON(2, "按钮");
+    /**
+     * 男
+     */
+    MAN(1, "男"),
+    /**
+     * 女
+     */
+    WOMEN(2, "女");
 
     private final int code;
     private final String message;
 
-    PermissionTypeEnum(int code, String message) {
+    SexEnum(int code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -21,8 +27,8 @@ public enum PermissionTypeEnum {
         return message;
     }
 
-    public static PermissionTypeEnum getByCode(int code) {
-        for (PermissionTypeEnum val : values()) {
+    public static SexEnum getByCode(int code) {
+        for (SexEnum val : values()) {
             if (val.code == code) {
                 return val;
             }

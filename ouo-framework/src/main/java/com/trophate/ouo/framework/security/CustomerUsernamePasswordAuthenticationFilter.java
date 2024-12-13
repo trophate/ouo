@@ -1,8 +1,8 @@
 package com.trophate.ouo.framework.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trophate.ouo.framework.common.utils.LogUtils;
-import com.trophate.ouo.framework.security.exception.InvalidUsernameOrPasswordException;
+import com.trophate.ouo.framework.commons.utils.LogUtils;
+import com.trophate.ouo.framework.security.exceptions.InvalidUsernameOrPasswordException;
 import com.trophate.ouo.framework.result.Result;
 import org.slf4j.Logger;
 import org.springframework.security.authentication.AuthenticationManager;

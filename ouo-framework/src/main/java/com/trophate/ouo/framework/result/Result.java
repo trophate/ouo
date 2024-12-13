@@ -1,11 +1,20 @@
 package com.trophate.ouo.framework.result;
 
-import com.trophate.ouo.framework.exception.ResException;
+import com.trophate.ouo.framework.exception.ResultException;
 
 public class Result {
 
+    /**
+     * 状态码
+     */
     private int code;
+    /**
+     * 消息
+     */
     private String message;
+    /**
+     * 数据
+     */
     private Object data;
 
     public int getCode() {
@@ -56,9 +65,10 @@ public class Result {
     /**
      * 失败
      *
+     * @param e 异常枚举
      * @return Result
      */
-    public static Result fail(ResException e) {
+    public static Result fail(ResultException e) {
         return new Result().setCode(e.getCode()).setMessage(e.getMessage());
     }
 }
