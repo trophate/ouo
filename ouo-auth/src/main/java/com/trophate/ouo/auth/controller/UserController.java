@@ -45,7 +45,7 @@ public class UserController {
     }
 
     /**
-     * 编辑信息
+     * 编辑信息。
      *
      * @param id id
      * @param dto 参数
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     /**
-     * 添加角色
+     * 添加角色。
      *
      * @param id id
      * @param dto 参数
