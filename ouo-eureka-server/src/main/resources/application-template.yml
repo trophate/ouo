@@ -6,8 +6,9 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://0.0.0.0:0/eureka
+      defaultZone: http://0.0.0.0:${server.port}/eureka
     register-with-eureka: false
+    fetch-registry: false
 logging:
   file:
     name: /.../eureka-server.log
