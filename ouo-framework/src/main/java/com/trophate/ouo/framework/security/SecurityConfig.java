@@ -28,7 +28,7 @@ public class SecurityConfig {
             throws Exception {
         http
                 .securityContext((context) -> context.securityContextRepository(repo))
-                .addFilterBefore(new SecridBuilderFilter(), SecurityContextHolderAwareRequestFilter.class)
+                .addFilterBefore(new AcidBuilderFilter(), SecurityContextHolderAwareRequestFilter.class)
                 .addFilterBefore(new CustomerUsernamePasswordAuthenticationFilter(authConfig.getAuthenticationManager()),
                         SecurityContextHolderAwareRequestFilter.class)
                 .authorizeRequests()

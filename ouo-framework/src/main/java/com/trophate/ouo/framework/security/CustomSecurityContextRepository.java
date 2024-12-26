@@ -38,8 +38,8 @@ public class CustomSecurityContextRepository extends HttpSessionSecurityContextR
 
     @Override
     public void saveContext(SecurityContext context, HttpServletRequest request, HttpServletResponse response) {
-        String secrid = SecridBuilderFilter.secrid;
-        redisTemplate.opsForHash().put(CONTEXT_CACHE_KEY, secrid, context);
+        String acid = AcidBuilderFilter.acid;
+        redisTemplate.opsForHash().put(CONTEXT_CACHE_KEY, acid, context);
         redisTemplate.expire(CONTEXT_CACHE_KEY, SecurityConstant.CONTEXT_CACHE_SURVIVAL_TIME, TimeUnit.SECONDS);
     }
 
@@ -52,10 +52,10 @@ public class CustomSecurityContextRepository extends HttpSessionSecurityContextR
      * 获取上下文
      */
     private SecurityContext getContext(HttpServletRequest request) {
-        String secrid = HttpUtils.getCookieVal(request, SecurityConstant.AUTH_COOKIE_NAME);
+        String acid = HttpUtils.getCookieVal(request, SecurityConstant.AUTH_COOKIE_NAME);
         SecurityContext context = null;
-        if (secrid != null) {
-            context = redisTemplate.<String, SecurityContext>opsForHash().get(CONTEXT_CACHE_KEY, secrid);
+        if (acid != null) {
+            context = redisTemplate.<String, SecurityContext>opsForHash().get(CONTEXT_CACHE_KEY, acid);
             if (context != null) {
                 redisTemplate.expire(CONTEXT_CACHE_KEY, SecurityConstant.CONTEXT_CACHE_SURVIVAL_TIME, TimeUnit.SECONDS);
             }

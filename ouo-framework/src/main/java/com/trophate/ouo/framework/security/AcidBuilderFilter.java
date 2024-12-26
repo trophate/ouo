@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SecridBuilderFilter extends GenericFilterBean {
+public class AcidBuilderFilter extends GenericFilterBean {
 
-    public static String secrid;
+    public static String acid;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -23,14 +23,15 @@ public class SecridBuilderFilter extends GenericFilterBean {
     }
 
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        Cookie secridCookie = HttpUtils.getCookie(request, SecurityConstant.AUTH_COOKIE_NAME);
-        if (secridCookie == null) {
-            secrid = RandomStringUtils.randomAlphabetic(10) + System.currentTimeMillis();
+        Cookie acidCookie = HttpUtils.getCookie(request, SecurityConstant.AUTH_COOKIE_NAME);
+        if (acidCookie == null) {
+            acid = RandomStringUtils.randomAlphabetic(10) + System.currentTimeMillis();
         } else {
-            secrid = secridCookie.getValue();
+            acid = acidCookie.getValue();
         }
-        secridCookie = new Cookie(SecurityConstant.AUTH_COOKIE_NAME, secrid);
-        response.addCookie(secridCookie);
+        acidCookie = new Cookie(SecurityConstant.AUTH_COOKIE_NAME, acid);
+        acidCookie.setPath("/");
+        response.addCookie(acidCookie);
         chain.doFilter(request, response);
     }
 }
