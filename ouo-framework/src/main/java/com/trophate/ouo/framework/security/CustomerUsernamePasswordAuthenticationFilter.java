@@ -2,22 +2,24 @@ package com.trophate.ouo.framework.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trophate.ouo.framework.commons.utils.LogUtils;
-import com.trophate.ouo.framework.security.exceptions.InvalidUsernameOrPasswordException;
 import com.trophate.ouo.framework.result.Result;
+import com.trophate.ouo.framework.security.exceptions.InvalidUsernameOrPasswordException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,8 +33,12 @@ public class CustomerUsernamePasswordAuthenticationFilter extends AbstractAuthen
 
     private final Logger logger = LogUtils.getLogger(this);
 
-    public CustomerUsernamePasswordAuthenticationFilter(AuthenticationManager authenticationManager) {
+    private final SecurityContextRepository securityContextRepository;
+
+    public CustomerUsernamePasswordAuthenticationFilter(AuthenticationManager authenticationManager,
+                                                        SecurityContextRepository securityContextRepository) {
         super(DEFAULT_ANT_PATH_REQUEST_MATCHER, authenticationManager);
+        this.securityContextRepository = securityContextRepository;
     }
 
     {
@@ -40,6 +46,7 @@ public class CustomerUsernamePasswordAuthenticationFilter extends AbstractAuthen
             @Override
             public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
                     throws IOException, ServletException {
+                securityContextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
                 var objectMapper = new ObjectMapper();
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");

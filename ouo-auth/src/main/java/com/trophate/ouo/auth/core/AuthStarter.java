@@ -7,10 +7,10 @@ import com.trophate.ouo.auth.enums.PermissionTypeEnum;
 import com.trophate.ouo.auth.enums.SexEnum;
 import com.trophate.ouo.auth.service.PermissionService;
 import com.trophate.ouo.auth.service.UserService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 
 @Component

@@ -7,4 +7,6 @@ spring:
     include: framework
 logging:
   file:
-    name: /.../auth.log
+    name: auth.log
+#  level:
+#    org.springframework.security: DEBUG

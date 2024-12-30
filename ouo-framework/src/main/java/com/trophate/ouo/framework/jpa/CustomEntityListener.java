@@ -2,10 +2,10 @@ package com.trophate.ouo.framework.jpa;
 
 import com.trophate.ouo.framework.security.CurrentUser;
 import com.trophate.ouo.framework.security.SecurityUtils;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
 
 @Component
@@ -33,8 +33,7 @@ public class CustomEntityListener {
 
     @PreUpdate
     public void setValueForUpdate(Object obj) {
-        if (obj instanceof BaseEntity) {
-            BaseEntity entity = (BaseEntity) obj;
+        if (obj instanceof BaseEntity entity) {
             CurrentUser user = SecurityUtils.getCurrentUser();
             LocalDateTime now = LocalDateTime.now();
             if (user != null) {

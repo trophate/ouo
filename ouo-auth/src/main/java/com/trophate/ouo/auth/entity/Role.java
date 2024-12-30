@@ -1,17 +1,17 @@
 package com.trophate.ouo.auth.entity;
 
 import com.trophate.ouo.framework.jpa.BaseEntity;
+import jakarta.persistence.Entity;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.SQLRestriction;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
 
 @Entity(name = "role")
 @DynamicInsert
 @DynamicUpdate
-@Where(clause = "deleted = 0")
+@SQLRestriction("deleted = 0")
 public class Role extends BaseEntity implements Serializable {
 
     /**

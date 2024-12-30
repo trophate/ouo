@@ -4,6 +4,10 @@ spring:
   application:
     name: gateway
   cloud:
+    nacos:
+      discovery:
+        server-addr: 0.0.0.0:0
+        namespace:
     gateway:
       routes:
       - id: auth
@@ -12,10 +16,6 @@ spring:
         - Path=/auth/**
         filters:
         - StripPrefix=1
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://0.0.0.0:0/eureka
 logging:
   file:
-    name: /../gateway.log
+    name: gateway.log

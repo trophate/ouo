@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.15</version>
+        <version>3.4.1</version>
         <relativePath/>
     </parent>
 
@@ -21,17 +21,17 @@
 
     <modules>
         <module>../ouo-framework</module>
-        <module>../ouo-eureka-server</module>
         <module>../ouo-gateway</module>
         <module>../ouo-auth</module>
     </modules>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <jackson.version>2.17.0</jackson.version>
         <ouo-framework.version>1.0.0</ouo-framework.version>
         <commons-lang3.version>3.14.0</commons-lang3.version>
-        <spring-cloud.version>2021.0.9</spring-cloud.version>
+        <spring-cloud.version>2024.0.0</spring-cloud.version>
+        <nacos-discovery.version>2023.0.3.2</nacos-discovery.version>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +72,11 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${nacos-discovery.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

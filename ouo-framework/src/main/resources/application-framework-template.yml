@@ -5,11 +5,13 @@ spring:
     password: 0
   jpa:
     show-sql: true
-  redis:
-    host: 0.0.0.0
-    password: 0
-    client-type: lettuce
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://0.0.0.0:0/eureka
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 0.0.0.0:0
+        namespace: ouo-prod
+  data:
+    redis:
+      host: 0.0.0.0
+      password: 0
+      client-type: lettuce

@@ -1,12 +1,12 @@
 package com.trophate.ouo.auth.entity;
 
 import com.trophate.ouo.auth.entity.pk.RolePermissionPK;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import java.io.Serializable;
 
 @Entity(name = "role_permission")

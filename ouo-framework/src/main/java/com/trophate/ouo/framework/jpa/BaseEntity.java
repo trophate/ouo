@@ -1,6 +1,7 @@
 package com.trophate.ouo.framework.jpa;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @EntityListeners({CustomEntityListener.class})

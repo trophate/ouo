@@ -1,21 +1,25 @@
 package com.trophate.ouo.framework.security;
 
 import com.trophate.ouo.framework.commons.utils.HttpUtils;
-import org.springframework.core.log.LogMessage;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.context.DeferredSecurityContext;
 import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.web.context.HttpRequestResponseHolder;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 @Component
-public class CustomSecurityContextRepository extends HttpSessionSecurityContextRepository {
+public class CustomSecurityContextRepository implements SecurityContextRepository {
 
+    private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder.getContextHolderStrategy();
     /**
      * 上下文缓存键
      */
@@ -25,15 +29,15 @@ public class CustomSecurityContextRepository extends HttpSessionSecurityContextR
     private RedisTemplate<Object, Object> redisTemplate;
 
     @Override
+    public DeferredSecurityContext loadDeferredContext(HttpServletRequest request) {
+        Supplier<SecurityContext> supplier = () -> getContext(request);
+        return new CustomSupplierDeferredSecurityContext(supplier, this.securityContextHolderStrategy);
+    }
+
+    @Deprecated
+    @Override
     public SecurityContext loadContext(HttpRequestResponseHolder requestResponseHolder) {
-        SecurityContext context = getContext(requestResponseHolder.getRequest());
-        if (context == null) {
-            context = generateNewContext();
-            if (this.logger.isTraceEnabled()) {
-                this.logger.trace(LogMessage.format("Created %s", context));
-            }
-        }
-        return context;
+        return null;
     }
 
     @Override
@@ -61,5 +65,9 @@ public class CustomSecurityContextRepository extends HttpSessionSecurityContextR
             }
         }
         return context;
+    }
+
+    protected SecurityContext generateNewContext() {
+        return this.securityContextHolderStrategy.createEmptyContext();
     }
 }

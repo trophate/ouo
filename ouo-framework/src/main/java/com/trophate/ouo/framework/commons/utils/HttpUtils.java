@@ -1,7 +1,7 @@
 package com.trophate.ouo.framework.commons.utils;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class HttpUtils {
 
