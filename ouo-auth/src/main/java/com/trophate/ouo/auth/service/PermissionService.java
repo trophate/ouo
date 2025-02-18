@@ -1,6 +1,6 @@
 package com.trophate.ouo.auth.service;
 
-import com.trophate.ouo.auth.dto.PermissionCreateDTO;
+import com.trophate.ouo.auth.dto.CreatePermissionDTO;
 import com.trophate.ouo.auth.entity.Permission;
 import com.trophate.ouo.auth.repository.PermissionRepository;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,11 @@ public class PermissionService {
     }
 
     /**
-     * 创建。
+     * 该方法创建一个权限。
      *
      * @param dto 参数
      */
-    public void create(PermissionCreateDTO dto) {
+    public void create(CreatePermissionDTO dto) {
         var permission = new Permission();
         permission.setName(dto.getName());
         permission.setCode(dto.getCode());
@@ -32,42 +32,31 @@ public class PermissionService {
     }
 
     /**
-     * 通过id集合获取编码表。
+     * 该方法批量创建权限。
      *
-     * @param ids id集合
-     * @return List<String>
+     * @param dtoList 参数集合
      */
-    public List<String> getCodesByIds(List<Integer> ids) {
-        List<Permission> permissions = permissionRepository.findByIdIn(ids);
-        var codes = new ArrayList<String>();
-        for (Permission permission : permissions) {
-            codes.add(permission.getCode());
+    public void createInBatch(List<CreatePermissionDTO> dtoList) {
+        var permissions = new ArrayList<Permission>();
+        for (var dto : dtoList) {
+            var permission = new Permission();
+            permission.setName(dto.getName());
+            permission.setCode(dto.getCode());
+            permission.setType(dto.getType());
+            permission.setParentId(dto.getParentId() != null ? dto.getParentId() : 0);
+            permissions.add(permission);
         }
-        return codes;
+        permissionRepository.saveAll(permissions);
     }
 
     /**
-     * 获取所有编码。
-     *
-     * @return List<String>
-     */
-    public List<String> getAllCodes() {
-        List<Permission> permissions = permissionRepository.findAll();
-        var codes = new ArrayList<String>();
-        for (Permission permission : permissions) {
-            codes.add(permission.getCode());
-        }
-        return codes;
-    }
-
-    /**
-     * 编辑。
+     * 该方法编辑指定权限。
      *
      * @param id id
      * @param dto 参数
      */
-    public void edit(int id, PermissionCreateDTO dto) {
-        Permission permission = permissionRepository.getById(id);
+    public void edit(int id, CreatePermissionDTO dto) {
+        Permission permission = permissionRepository.getReferenceById(id);
         if (dto.getName() != null) {
             permission.setName(dto.getName());
         }
@@ -81,7 +70,7 @@ public class PermissionService {
     }
 
     /**
-     * 删除。
+     * 该方法删除指定权限。
      *
      * @param id id
      */
@@ -90,20 +79,35 @@ public class PermissionService {
     }
 
     /**
-     * 保存。
+     * 该方法获取权限编码表。
      *
-     * @param permission 参数
+     * @param ids id集合
+     * @return List<String>
      */
-    public void save(Permission permission) {
-        permissionRepository.save(permission);
+    public List<String> getCodesByIds(List<Integer> ids) {
+        List<Permission> permissions = permissionRepository.findByIdIn(ids);
+        var codes = new ArrayList<String>();
+        for (Permission permission : permissions) {
+            codes.add(permission.getCode());
+        }
+        return codes;
+    }
+
+    public Permission getByCode(String code) {
+        return permissionRepository.findByCode(code);
     }
 
     /**
-     * 批量保存。
+     * 该方法获取所有权限编码。
      *
-     * @param permissions 参数集合
+     * @return List<String>
      */
-    public void saveInBatch(List<Permission> permissions) {
-        permissionRepository.saveAll(permissions);
+    public List<String> getAllCodes() {
+        List<Permission> permissions = permissionRepository.findAll();
+        var codes = new ArrayList<String>();
+        for (Permission permission : permissions) {
+            codes.add(permission.getCode());
+        }
+        return codes;
     }
 }

@@ -1,14 +1,12 @@
 package com.trophate.ouo.auth.controller;
 
-
-import com.trophate.ouo.auth.dto.PermissionCreateDTO;
+import com.trophate.ouo.auth.dto.CreatePermissionDTO;
 import com.trophate.ouo.auth.service.PermissionService;
 import com.trophate.ouo.framework.result.Result;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/web/permissions")
 public class PermissionController {
 
     private final PermissionService permissionService;
@@ -18,39 +16,39 @@ public class PermissionController {
     }
 
     /**
-     * 创建。
+     * 该方法创建一个权限。
      *
      * @param dto 参数
      * @return Result
      */
-    @PostMapping
+    @PostMapping("/create_permission")
     @PreAuthorize("hasAuthority('permission:create')")
-    public Result create(@RequestBody PermissionCreateDTO dto) {
+    public Result create(@RequestBody CreatePermissionDTO dto) {
         permissionService.create(dto);
         return Result.success();
     }
 
     /**
-     * 编辑。
+     * 该方法编辑指定权限。
      *
      * @param id id
      * @param dto 参数
      * @return Result
      */
-    @PutMapping("/{id}")
+    @PostMapping("/edit_permission/{id}")
     @PreAuthorize("hasAuthority('permission:edit')")
-    public Result edit(@PathVariable("id") int id, @RequestBody PermissionCreateDTO dto) {
+    public Result edit(@PathVariable("id") int id, @RequestBody CreatePermissionDTO dto) {
         permissionService.edit(id, dto);
         return Result.success();
     }
 
     /**
-     * 删除。
+     * 该方法删除指定权限。
      *
      * @param id id
      * @return Result
      */
-    @DeleteMapping("/{id}")
+    @PostMapping("/del_permission/{id}")
     @PreAuthorize("hasAuthority('permission:del')")
     public Result del(@PathVariable("id") int id) {
         permissionService.del(id);

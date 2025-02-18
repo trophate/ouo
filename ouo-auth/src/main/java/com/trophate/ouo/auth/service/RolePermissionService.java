@@ -17,7 +17,7 @@ public class RolePermissionService {
     }
 
     /**
-     * 批量保存。
+     * 该方法批量保存角色-权限映射关系。
      *
      * @param rolePermissions 参数集合
      */
@@ -26,7 +26,7 @@ public class RolePermissionService {
     }
 
     /**
-     * 通过角色id删除。
+     * 该方法删除映射关系。
      *
      * @param roleId 角色id
      */
@@ -35,7 +35,7 @@ public class RolePermissionService {
     }
 
     /**
-     * 通过角色id集合获取权限id集合。
+     * 该方法获取权限id集合。
      *
      * @param roleIds 角色id集合
      * @return List<Integer>

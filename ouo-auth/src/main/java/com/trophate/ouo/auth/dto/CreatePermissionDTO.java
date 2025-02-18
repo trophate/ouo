@@ -1,6 +1,6 @@
 package com.trophate.ouo.auth.dto;
 
-public class PermissionCreateDTO {
+public class CreatePermissionDTO {
 
     /**
      * 名称

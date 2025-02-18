@@ -17,7 +17,7 @@ public class UserRoleService {
     }
 
     /**
-     * 批量保存。
+     * 该方法批量保存用户-角色映射关系。
      *
      * @param userRoles 参数集合
      */
@@ -26,7 +26,7 @@ public class UserRoleService {
     }
 
     /**
-     * 通过用户id删除。
+     * 该方法删除映射关系。
      *
      * @param userId 用户id
      */
@@ -35,7 +35,7 @@ public class UserRoleService {
     }
 
     /**
-     * 通过用户id获取角色id集合。
+     * 该方法获取角色id集合。
      *
      * @param userId 用户id
      * @return List<Integer>

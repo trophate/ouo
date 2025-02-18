@@ -1,6 +1,6 @@
 package com.trophate.ouo.auth.dto;
 
-public class InfoOfUserEditDTO {
+public class EditUserInfoDTO {
 
     /**
      * 性别

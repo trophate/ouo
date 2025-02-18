@@ -10,4 +10,6 @@ public interface PermissionRepository extends CustomRepository<Permission, Integ
     List<Permission> findByIdIn(List<Integer> ids);
 
     List<Permission> findAll();
+
+    Permission findByCode(String code);
 }

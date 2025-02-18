@@ -2,12 +2,12 @@ package com.trophate.ouo.auth.service;
 
 import com.trophate.ouo.auth.constant.AuthConstant;
 import com.trophate.ouo.auth.dto.AddRoleDTO;
-import com.trophate.ouo.auth.dto.InfoOfUserEditDTO;
-import com.trophate.ouo.auth.dto.UserRegisterDTO;
+import com.trophate.ouo.auth.dto.EditUserInfoDTO;
+import com.trophate.ouo.auth.dto.RegisterUserDTO;
 import com.trophate.ouo.auth.entity.User;
 import com.trophate.ouo.auth.entity.UserRole;
 import com.trophate.ouo.auth.enums.SexEnum;
-import com.trophate.ouo.auth.exception.UsernameExistException;
+import com.trophate.ouo.auth.exception.UsernameAlreadyExistException;
 import com.trophate.ouo.auth.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,13 +34,13 @@ public class UserService {
     }
 
     /**
-     * 注册。
+     * 该方法注册一个新用户。
      *
      * @param dto 参数
      */
-    public void register(UserRegisterDTO dto) {
+    public void register(RegisterUserDTO dto) {
         if (userRepository.findUserByUsername(dto.getUsername()) != null) {
-            throw new UsernameExistException();
+            throw new UsernameAlreadyExistException();
         }
         var user = new User();
         user.setUsername(dto.getUsername());
@@ -52,7 +52,7 @@ public class UserService {
     }
 
     /**
-     * 注销。
+     * 该方法注销指定用户。
      *
      * @param id id
      */
@@ -61,12 +61,12 @@ public class UserService {
     }
 
     /**
-     * 编辑基础信息
+     * 该方法编辑用户信息。
      *
      * @param id id
      * @param dto 参数
      */
-    public void editBaseInfo(int id, InfoOfUserEditDTO dto) {
+    public void editInfo(int id, EditUserInfoDTO dto) {
         User user = userRepository.findById(id);
         user.setSex(dto.getSex());
         user.setProfile(dto.getProfile());
@@ -74,12 +74,12 @@ public class UserService {
     }
 
     /**
-     * 添加角色
+     * 该方法为指定用户批量添加角色。
      *
      * @param id id
      * @param dto 参数
      */
-    public void addRole(int id, AddRoleDTO dto) {
+    public void addRoles(int id, AddRoleDTO dto) {
         userRoleService.deleteByUserId(id);
         var userRoles = new ArrayList<UserRole>();
         for (int roleId : dto.getRoleIds()) {

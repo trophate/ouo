@@ -1,6 +1,6 @@
 package com.trophate.ouo.auth.dto;
 
-public class UserRegisterDTO {
+public class RegisterUserDTO {
 
     /**
      * 用户名

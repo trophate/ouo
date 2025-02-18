@@ -1,15 +1,14 @@
 package com.trophate.ouo.auth.controller;
 
 import com.trophate.ouo.auth.dto.AddRoleDTO;
-import com.trophate.ouo.auth.dto.InfoOfUserEditDTO;
-import com.trophate.ouo.auth.dto.UserRegisterDTO;
+import com.trophate.ouo.auth.dto.EditUserInfoDTO;
+import com.trophate.ouo.auth.dto.RegisterUserDTO;
 import com.trophate.ouo.auth.service.UserService;
 import com.trophate.ouo.framework.result.Result;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/web/users")
 public class UserController {
 
     private final UserService userService;
@@ -19,25 +18,25 @@ public class UserController {
     }
 
     /**
-     * 注册。
+     * 该方法注册一个新用户。
      *
      * @param dto 参数
      * @return Result
      */
-    @PostMapping("/register")
+    @PostMapping("/register_user")
     @PreAuthorize("hasAuthority('user:register')")
-    public Result register(@RequestBody UserRegisterDTO dto) {
+    public Result register(@RequestBody RegisterUserDTO dto) {
         userService.register(dto);
         return Result.success();
     }
 
     /**
-     * 注销。
+     * 该方法注销指定用户。
      *
      * @param id id
      * @return Result
      */
-    @DeleteMapping("/{id}/cancel")
+    @PostMapping("/cancel_user/{id}")
     @PreAuthorize("hasAuthority('user:cancel')")
     public Result cancel(@PathVariable("id") int id) {
         userService.cancel(id);
@@ -45,30 +44,30 @@ public class UserController {
     }
 
     /**
-     * 编辑信息。
+     * 该方法编辑用户信息。
      *
      * @param id id
      * @param dto 参数
      * @return Result
      */
-    @PutMapping("/{id}/base-info")
+    @PostMapping("/edit_user_info/{id}/")
     @PreAuthorize("hasAuthority('user:info:edit')")
-    public Result editBaseInfo(@PathVariable("id") int id, @RequestBody InfoOfUserEditDTO dto) {
-        userService.editBaseInfo(id, dto);
+    public Result editInfo(@PathVariable("id") int id, @RequestBody EditUserInfoDTO dto) {
+        userService.editInfo(id, dto);
         return Result.success();
     }
 
     /**
-     * 添加角色。
+     * 该方法为指定用户批量添加角色。
      *
      * @param id id
      * @param dto 参数
      * @return Result
      */
-    @PutMapping("/{id}/add-role")
+    @PostMapping("/add_roles_to_user/{userId}")
     @PreAuthorize("hasAuthority('user:addRole')")
-    public Result addRole(@PathVariable("id") int id, @RequestBody AddRoleDTO dto) {
-        userService.addRole(id, dto);
+    public Result addRoles(@PathVariable("userId") int id, @RequestBody AddRoleDTO dto) {
+        userService.addRoles(id, dto);
         return Result.success();
     }
 }

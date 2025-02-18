@@ -12,11 +12,11 @@ public enum SexEnum {
     WOMEN(2, "女");
 
     private final int code;
-    private final String message;
+    private final String value;
 
-    SexEnum(int code, String message) {
+    SexEnum(int code, String value) {
         this.code = code;
-        this.message = message;
+        this.value = value;
     }
 
     public int getCode() {
@@ -24,13 +24,13 @@ public enum SexEnum {
     }
 
     public String getMessage() {
-        return message;
+        return value;
     }
 
     public static SexEnum getByCode(int code) {
-        for (SexEnum val : values()) {
-            if (val.code == code) {
-                return val;
+        for (SexEnum e : values()) {
+            if (e.code == code) {
+                return e;
             }
         }
         return null;

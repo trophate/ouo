@@ -1,6 +1,7 @@
 package com.trophate.ouo.auth.core;
 
 import com.trophate.ouo.auth.constant.AuthConstant;
+import com.trophate.ouo.auth.dto.CreatePermissionDTO;
 import com.trophate.ouo.auth.entity.Permission;
 import com.trophate.ouo.auth.entity.User;
 import com.trophate.ouo.auth.enums.PermissionTypeEnum;
@@ -30,7 +31,7 @@ public class AuthStarter {
     }
 
     /**
-     * 创建默认管理员。
+     * 该方法创建一个默认管理员并赋予其初始权限。
      */
     private void createDefaultData() {
         User admin = userService.getByUsername("admin");
@@ -43,33 +44,33 @@ public class AuthStarter {
             user.setPassword(encryptedPassword);
             user.setSex(SexEnum.MAN.getCode());
             userService.save(user);
-            var permissions = new ArrayList<Permission>();
-            var permission = new Permission();
-            permission.setParentId(0);
-            permission.setType(PermissionTypeEnum.ORDER.getCode());
-            permission.setName("权限");
-            permission.setCode("permission");
-            permissionService.save(permission);
-            int permissionParentId = permission.getId();
-            permission = new Permission();
-            permission.setType(PermissionTypeEnum.BUTTON.getCode());
-            permission.setParentId(permissionParentId);
-            permission.setName("创建");
-            permission.setCode("permission:create");
-            permissions.add(permission);
-            permission = new Permission();
-            permission.setType(PermissionTypeEnum.BUTTON.getCode());
-            permission.setParentId(permissionParentId);
-            permission.setName("编辑");
-            permission.setCode("permission:edit");
-            permissions.add(permission);
-            permission = new Permission();
-            permission.setType(PermissionTypeEnum.BUTTON.getCode());
-            permission.setParentId(permissionParentId);
-            permission.setName("删除");
-            permission.setCode("permission:del");
-            permissions.add(permission);
-            permissionService.saveInBatch(permissions);
+            var createPermissionDTOs = new ArrayList<CreatePermissionDTO>();
+            var createPermissionDTO = new CreatePermissionDTO();
+            createPermissionDTO.setParentId(0);
+            createPermissionDTO.setType(PermissionTypeEnum.ORDER.getCode());
+            createPermissionDTO.setName("权限");
+            createPermissionDTO.setCode("permission");
+            permissionService.create(createPermissionDTO);
+            int permissionParentId = permissionService.getByCode("permission").getParentId();
+            createPermissionDTO = new CreatePermissionDTO();
+            createPermissionDTO.setType(PermissionTypeEnum.BUTTON.getCode());
+            createPermissionDTO.setParentId(permissionParentId);
+            createPermissionDTO.setName("创建");
+            createPermissionDTO.setCode("permission:create");
+            createPermissionDTOs.add(createPermissionDTO);
+            createPermissionDTO = new CreatePermissionDTO();
+            createPermissionDTO.setType(PermissionTypeEnum.BUTTON.getCode());
+            createPermissionDTO.setParentId(permissionParentId);
+            createPermissionDTO.setName("编辑");
+            createPermissionDTO.setCode("permission:edit");
+            createPermissionDTOs.add(createPermissionDTO);
+            createPermissionDTO = new CreatePermissionDTO();
+            createPermissionDTO.setType(PermissionTypeEnum.BUTTON.getCode());
+            createPermissionDTO.setParentId(permissionParentId);
+            createPermissionDTO.setName("删除");
+            createPermissionDTO.setCode("permission:del");
+            createPermissionDTOs.add(createPermissionDTO);
+            permissionService.createInBatch(createPermissionDTOs);
         }
     }
 }

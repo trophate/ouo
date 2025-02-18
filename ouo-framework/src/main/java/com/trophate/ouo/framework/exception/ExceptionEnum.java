@@ -13,7 +13,7 @@ public enum ExceptionEnum {
     /**
      * 用户名已存在
      */
-    USERNAME_EXIST(3700003, "用户名已存在");
+    USERNAME_ALREADY_EXIST(3700003, "用户名已存在");
 
     /**
      * 异常码
