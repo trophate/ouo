@@ -12,11 +12,11 @@ public enum DefaultResultEnum {
     FAIL(-1, "fail");
 
     private final int code;
-    private final String message;
+    private final String value;
 
-    DefaultResultEnum(int code, String message) {
+    DefaultResultEnum(int code, String value) {
         this.code = code;
-        this.message = message;
+        this.value = value;
     }
 
     public int getCode() {
@@ -24,6 +24,6 @@ public enum DefaultResultEnum {
     }
 
     public String getMessage() {
-        return message;
+        return value;
     }
 }

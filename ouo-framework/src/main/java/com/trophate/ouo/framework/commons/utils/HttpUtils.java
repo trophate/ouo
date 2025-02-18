@@ -6,10 +6,10 @@ import jakarta.servlet.http.HttpServletRequest;
 public class HttpUtils {
 
     /**
-     * 通过名称获取Cookie对象。
+     * 该方法获取Cookie对象。
      *
      * @param request request
-     * @param name Cookie名称
+     * @param name cookie名称
      * @return Cookie
      */
     public static Cookie getCookie(HttpServletRequest request, String name) {
@@ -24,11 +24,11 @@ public class HttpUtils {
     }
 
     /**
-     * 通过名称获取Cookie的值。
+     * 该方法获取cookie的值。
      *
      * @param request request
-     * @param name Cookie名称
-     * @return Cookie值
+     * @param name cookie名称
+     * @return cookie值
      */
     public static String getCookieVal(HttpServletRequest request, String name) {
         if (request.getCookies() != null) {

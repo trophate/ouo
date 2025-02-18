@@ -45,7 +45,7 @@ public class Result {
     }
 
     /**
-     * 成功
+     * 该方法返回一个成功的Result对象。
      *
      * @return Result
      */
@@ -54,7 +54,7 @@ public class Result {
     }
 
     /**
-     * 失败
+     * 该方法返回一个失败的Result对象。
      *
      * @return Result
      */
@@ -63,7 +63,7 @@ public class Result {
     }
 
     /**
-     * 失败
+     * 该方法返回一个失败的Result对象。
      *
      * @param e 异常枚举
      * @return Result

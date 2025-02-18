@@ -4,7 +4,7 @@ import com.trophate.ouo.framework.exception.ExceptionEnum;
 import com.trophate.ouo.framework.exception.ResultException;
 
 /**
- * 无效的账号密码
+ * 无效的账号或密码
  */
 public class InvalidUsernameOrPasswordException extends ResultException {
 

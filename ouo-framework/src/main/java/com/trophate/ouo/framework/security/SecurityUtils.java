@@ -6,7 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class SecurityUtils {
 
     /**
-     * 获取当前用户
+     * 该方法获取当前用户。
      *
      * @return CurrentUser
      */
